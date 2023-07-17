@@ -81,6 +81,12 @@ export const signup = (name, email, password) => async (dispatch) => {
         }, config
         );
 
+        localStorage.setItem('user', {
+            loading: false,
+            user: data,
+            isAuthenticated: true
+        });
+
         dispatch({
             type: LOGIN_SIGNUP_SUCCESS, payload: {
                 user: data
@@ -126,6 +132,8 @@ export const logoutUser = () => async (dispatch) => {
         });
 
         await axios.get(BACKEND_HOSTNAME + '/api/v1/logout');
+
+        localStorage.removeItem('user');
 
         dispatch({
             type: LOGOUT_USER_SUCCESS
@@ -197,20 +205,20 @@ export const updatePassword = (oldPassword, newPassword, confirmPassword) => asy
 
 // get all users
 export const getAllUsers = () => async (dispatch) => {
-    try{
+    try {
         dispatch({
             type: ALL_USER_REQUEST
         });
 
-        const { data } = await axios.get(BACKEND_HOSTNAME+'/api/v1/admin/users');
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/admin/users');
 
         dispatch({
             type: ALL_USER_SUCCESS,
-            payload : {
+            payload: {
                 userDetails: data
             }
         });
-    }catch(err){
+    } catch (err) {
         dispatch({
             type: ALL_USER_FAIL,
             error: err.response.data.error
@@ -219,19 +227,19 @@ export const getAllUsers = () => async (dispatch) => {
 }
 
 // delete user
-export const deleteUser = (userID) => async (dispatch ) => {
-    try{
+export const deleteUser = (userID) => async (dispatch) => {
+    try {
         dispatch({
             type: DELETE_USER_REQUEST
         });
 
-        await axios.delete(BACKEND_HOSTNAME+'/api/v1/admin/user/'+userID);
+        await axios.delete(BACKEND_HOSTNAME + '/api/v1/admin/user/' + userID);
 
         dispatch({
             type: DELETE_USER_SUCCESS
         });
 
-    }catch(err){
+    } catch (err) {
         dispatch({
             type: DELETE_USER_FAIL,
             payload: {

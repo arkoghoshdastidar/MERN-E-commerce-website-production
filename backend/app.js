@@ -8,11 +8,14 @@ const orderRoute = require('./routes/orderRoute');
 const paymentRoute = require('./routes/paymentRoute');
 const cors = require('cors');
 const path = require('path');
+const dotenv = require('dotenv');
 
 const corsOptions = {
     origin: true,
     credentials: true
 };
+
+dotenv.config({ path: 'backend/config/config.env' });
 
 app.use(express.json());
 app.use(cookieParser());
