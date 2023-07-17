@@ -1,0 +1,33 @@
+.form {
+    width: 40vmax;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    font-size: 1.8vmax;
+    padding: 1vmax;
+    border-radius: 20px;
+    border: 1px solid #6119e653;
+    margin-top: 5vmax;
+    color: #272727;
+}
+
+.button {
+    background-color: var(--primary-color);
+    border-radius: 0.5vmax;
+    color: var(--primary-background-color);
+    width: 10vmax;
+    font-size: 2vmax;
+    padding: 0.5vmax;
+    margin-top: 2vmax;
+    margin-bottom: 5vmax;
+}
+
+.input:focus{
+    border: 1px solid #6119e6;
+}

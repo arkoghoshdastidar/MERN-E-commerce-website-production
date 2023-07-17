@@ -1,0 +1,75 @@
+.d-grid{
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    font-size: 1vmax;
+    padding: 0.5vmax;
+    grid-gap: 1vmax;
+}
+
+/* quantiy container css */
+.quantity-container{
+    display: flex;
+    align-items: center;
+}
+
+.quantity-container > input{
+    width: 4vmax;
+}
+
+.quantity-container > button{
+   background-color: var(--primary-color);
+   outline: none;
+   border: none;
+   color: white;
+   margin: 0;
+}
+
+.quantity-container{
+    display: flex;
+}
+
+/* product details container css */
+.product-details-container{
+    display: flex;
+}
+
+.product-details-container > div{
+    padding-left: 1vmax;
+    margin: 0.5vmax 0 0.5vmax 0 ;
+    color: rgba(0, 0, 0, 0.823);
+}
+
+.price-container{
+    display: flex;
+    align-items: center;
+}
+
+.product-details-container > img{
+    width: 7vmax;
+    height: 8vmax;
+}
+
+.price{
+    font-size: 1.4vmax;
+}
+
+.remove{
+    color: red;
+    cursor: pointer;
+}
+
+.remove:hover{
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 768px){ 
+    .d-grid{
+        grid-template-columns: 2.5fr 1fr 0.5fr;
+    }
+}
+
+@media screen and (max-width: 450px){ 
+    .d-grid{
+        font-size: 0.8vmax;
+    }
+}

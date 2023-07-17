@@ -1,0 +1,11 @@
+.link{
+    cursor: pointer;
+    margin: 2vmax;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.link:hover{
+    color: blue;
+    text-decoration: underline;
+}

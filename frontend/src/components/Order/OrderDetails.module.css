@@ -1,0 +1,31 @@
+.order-details-container{
+    width: 100%;
+    margin: auto;
+    color: rgba(0, 0, 0, 0.804);
+}
+
+.order-item{
+    display: flex;
+    justify-content: space-around;
+    font-size: 1rem;
+    margin: 1vmax 0 0 0;
+}
+
+.img-container > img{
+    width: 15vmax;
+}
+
+.link{
+    color: blue;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.link:hover{
+    text-decoration: underline;
+}
+
+.shipping-container, .pricing-container{
+    text-align: center;
+    margin: 2vmax 0;
+}

@@ -1,0 +1,81 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: 1.5fr 4fr;
+    padding: 2vmax;
+    grid-gap: 2vmax;
+}
+
+.total-amount {
+    text-align: center;
+    font-size: 2.5vmax;
+    background: var(--primary-color);
+    padding: 1vmax;
+    color: white;
+}
+
+.summary{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.details-board  h1 {
+    text-align: center;
+}
+
+.summary > div{
+    text-align: center;
+    border: 2px solid black;
+    padding: 1vmax;
+}
+
+.all-products-container{
+    width: 100%;
+    min-height: 80vh;
+}
+
+.products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    background-color: var(--primary-color);
+    padding: 1vmax;
+    color: white;
+}
+
+.products > div{
+    text-align: center;
+    overflow: hidden;
+    font-size: 1vmax;
+}
+
+.hide-bg{
+    background: transparent;
+    color: black;
+}
+
+.delete-btn, .edit-btn:hover{
+    cursor: pointer;
+}
+
+.form-container{
+    width: 100%;
+}
+
+.form-container>div{
+    width: 100%;
+    margin: 0.5vmax;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-container input, select{
+    text-align: start;
+    padding: 1vmax;
+    width: 60%;
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,33 @@
+.col-50{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.col-50 > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1vmax 0;
+}
+
+.col-50 input{
+    width: 60%;
+    text-align: start;
+    padding: 1vmax;
+}
+
+.pay{
+    height: 50px;
+    width: 80px;
+    font-size: 1.5rem;
+    margin: auto;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 400;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0.8rem;
+}

@@ -1,0 +1,19 @@
+.order-item-container{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    margin-top: 1vmax;
+}
+
+.order-item-container > div{
+    text-align: center;
+    font-size: 1.25vmax;
+}
+
+.link{
+    cursor: pointer;
+    color: blue;
+}
+
+.link:hover{
+    text-decoration: underline;
+}

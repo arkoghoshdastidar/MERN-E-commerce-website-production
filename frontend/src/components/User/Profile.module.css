@@ -1,0 +1,48 @@
+h2{
+    text-align: start;
+    font-weight: 400;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 2vmax;
+}
+
+.my-profile-container{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    flex-direction: column;
+}
+
+.my-profile-details > div{
+    margin: 1.2vmax 0;
+}
+
+.button-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1vmax;
+}
+
+.button-container > button{
+    margin: 0 1.2vmax 0 0 ;
+}
+
+@media screen and (max-width: 600px) {
+    h2{
+        text-align: center;
+    }
+
+    .my-profile-container{
+        align-items: center;
+    }
+
+    .button-container{
+        flex-direction: column;
+    }
+
+    .button-container > button{
+        margin: 1.2vmax 0;
+        width: 30vmax;
+    }
+}

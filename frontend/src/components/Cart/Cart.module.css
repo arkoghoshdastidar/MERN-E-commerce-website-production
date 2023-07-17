@@ -1,0 +1,48 @@
+.cart-container{
+    width: 80vw;
+    margin: auto;
+}
+
+.d-grid{
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    font-size: 1.4vmax;
+    padding: 1vmax;
+    grid-gap: 1vmax;
+}
+
+.primary-background{
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.order-container{
+    width: 80%;
+    margin: auto;
+    border-top: 1px solid var(--primary-color);
+    text-align: center;
+    font-size: 2vmax;
+    margin-top: 2vmax;
+    padding: 1vmax;
+}
+
+.total-price{
+    color: var(--primary-color);
+}
+
+.order-button{
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 3vmax;
+    border-radius: 1vmax;
+    font-size: 1.4vmax;
+    padding: 1vmax;
+    margin-top: 1vmax;
+}
+
+@media screen and (max-width: 768px){ 
+    .d-grid{
+        grid-template-columns: 2.5fr 1fr 0.5fr;
+        font-size: 1.2vmax;
+    }
+}

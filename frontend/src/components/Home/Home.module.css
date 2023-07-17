@@ -1,0 +1,125 @@
+.banner {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    width: 100vw;
+    height: 85vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner>h1 {
+    margin: 5vmax;
+    font: 500 2.5vmax;
+}
+
+.banner>a>button {
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 0;
+    padding: 1vmax;
+    transition: all 0.5s;
+    width: 9vmax;
+    font-size: 1vmax;
+}
+
+.banner>a>button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: white;
+}
+
+.home-heading {
+    text-align: center;
+    font-size: 2vmax;
+    border-bottom: 1px solid black;
+    width: 20vmax;
+    padding: 1vmax;
+    margin: 5vmax auto;
+}
+
+.container {
+    display: flex;
+    margin: 2vmax auto;
+    width: 80vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-card {
+    width: 14vmax;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+    margin: 2vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+}
+
+.product-card>img {
+    width: 14vmax;
+    height: 15vmax;
+}
+
+.product-card>span {
+    margin: 0.5vmax;
+    color: goldenrod;
+    font-size: 1vmax;
+}
+
+.product-card:hover {
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+    transform: translateY(-1vmax);
+}
+
+.product-card>p {
+    font-size: 1.2vmax;
+    margin: 1vmax 0.5vmax;
+    margin-bottom: 0;
+}
+
+.product-card>div {
+    margin: 0.5vmax;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.disable-link {
+    pointer-events: none;
+}
+
+@media screen and (max-width: 800px) {
+    .banner {
+        height: 70vh;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .banner {
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .product-card>p {
+        font-size: 1.7vmax;
+    }
+
+    .product-card>div {
+        margin: 0vmax;
+        display: block;
+    }
+
+    .product-card>span {
+        font-size: 1.5vmax;
+    }
+
+    .product-card>div>span {
+        margin: 0 0.5vmax;
+        font: 300 1vmax;
+    }
+}

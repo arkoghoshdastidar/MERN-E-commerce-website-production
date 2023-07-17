@@ -1,0 +1,11 @@
+.pagination-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vmax;
+}
+
+.item-container{
+    width: 100%;
+}

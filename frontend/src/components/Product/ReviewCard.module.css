@@ -1,0 +1,19 @@
+.review-card{
+    width: 80%;
+    margin: auto;
+    text-align: start;
+    padding: 2vmax;
+}
+
+.review-card > div{
+    color: #212121f2;
+    font-size: 1.75vmax;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.review-card > small{
+    color: #282727d0;
+    font-size: 1.2vmax;
+}

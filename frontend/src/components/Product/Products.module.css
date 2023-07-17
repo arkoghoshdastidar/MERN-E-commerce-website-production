@@ -1,0 +1,61 @@
+.heading {
+    margin: 0 auto;
+    width: 80%;
+    text-align: center;
+    border-bottom: 0.5px solid #2827273b;
+    color: #212121b0;
+    font-size: 2.5vmax;
+    padding-bottom: 1vmax;
+}
+
+.all-products {
+    display: flex;
+    margin: 2vmax auto;
+    width: 80vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.all-products>div:hover {
+    cursor: pointer;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 2vmax 0 2vmax 0;
+}
+
+.slider-container {
+    width: 30vmax;
+    margin: auto;
+}
+
+.slider-container>div {
+    text-align: center;
+    width: 30vmax;
+    padding: 0.5vmax;
+    font-size: 2.5vmax;
+    color: #282727c6;
+    margin-bottom: 0.5vmax;
+}
+
+.rating-container {
+    width: 30vmax;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 2vmax;
+}
+
+.rating-container>div {
+    width: 30vmax;
+    padding: 0.5vmax;
+    font-size: 2vmax;
+    color: #282727c6;
+    margin-bottom: 0.5vmax;
+}
+
+.sidebar {
+    text-align: center;
+    margin: 2vmax 0 2vmax 0;
+}
