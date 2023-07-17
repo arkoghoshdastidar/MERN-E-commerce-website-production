@@ -141,7 +141,7 @@ export const allUsers = (state = { userDetails: []}, action) => {
                 ...state,
                 uLoading: false,
                 userDetails: {},
-                uError: action.payload.error
+                uError: 'Cannot load users'
             }
         case CLEAR_ERROR:
             return {

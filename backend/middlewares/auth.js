@@ -4,7 +4,12 @@ const jwt = require('jsonwebtoken');
 
 const isUserAuthenticated = async function (req, res, next) {
     try {
-        const token = req.cookies.token;
+        if(!req.headers.authorization){
+            return next(new ErrorHandler('Please login to use this reaource', 401));
+        }
+
+        const token = req.headers.authorization.split(' ')[1];
+
         if (!token) {
             return next(new ErrorHandler('Please login to use this resource.', 401));
         }

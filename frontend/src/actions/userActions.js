@@ -28,7 +28,8 @@ import { BACKEND_HOSTNAME } from '../constants/global';
 
 const config = {
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${(localStorage.getItem('token')) ? localStorage.getItem('token') : 'no_token'}` 
     }
 };
 
@@ -53,6 +54,8 @@ export const login = (email, password) => async (dispatch) => {
             isAuthenticated: true
         });
 
+        localStorage.setItem('token', data.token);
+
         dispatch({
             type: LOGIN_SIGNUP_SUCCESS, payload: {
                 user: data
@@ -61,7 +64,7 @@ export const login = (email, password) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: LOGIN_SIGNUP_FAIL, payload: {
-                err: err.response.data.error
+                err: 'Failed to login'
             }
         });
     }
@@ -86,6 +89,7 @@ export const signup = (name, email, password) => async (dispatch) => {
             user: data,
             isAuthenticated: true
         });
+        localStorage.setItem('token', data.token);
 
         dispatch({
             type: LOGIN_SIGNUP_SUCCESS, payload: {
@@ -95,7 +99,7 @@ export const signup = (name, email, password) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: LOGIN_SIGNUP_FAIL, payload: {
-                err: err.response.data.error
+                err: 'Failed to signup'
             }
         })
     }
@@ -108,7 +112,7 @@ export const loadUser = () => async (dispatch) => {
             type: LOAD_USER_REQUEST
         });
 
-        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/me');
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/me', config);
 
         dispatch({
             type: LOAD_USER_SUCCESS, payload: {
@@ -118,7 +122,7 @@ export const loadUser = () => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: LOAD_USER_FAIL, payload: {
-                err: err.response.data.error
+                err: 'Failed to load user'
             }
         })
     }
@@ -131,9 +135,10 @@ export const logoutUser = () => async (dispatch) => {
             type: LOGOUT_USER_REQUEST
         });
 
-        await axios.get(BACKEND_HOSTNAME + '/api/v1/logout');
+        await axios.get(BACKEND_HOSTNAME + '/api/v1/logout', config);
 
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
 
         dispatch({
             type: LOGOUT_USER_SUCCESS
@@ -141,7 +146,7 @@ export const logoutUser = () => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: LOGOUT_USER_FAIL, payload: {
-                err: err.response.data.error
+                err: 'Failed to logout user'
             }
         })
     }
@@ -157,7 +162,8 @@ export const editProfile = (name, email) => async (dispatch) => {
         const { data } = await axios.put(BACKEND_HOSTNAME + '/api/v1/me/update', {
             name,
             email
-        });
+        }, config
+        );
 
         dispatch({
             type: UPDATE_USER_SUCCESS,
@@ -168,7 +174,7 @@ export const editProfile = (name, email) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: UPDATE_USER_FAIL, payload: {
-                err: err.response.data.error
+                err: 'Failed to edit profile'
             }
         });
     }
@@ -185,7 +191,7 @@ export const updatePassword = (oldPassword, newPassword, confirmPassword) => asy
             oldPassword,
             newPassword,
             confirmPassword
-        });
+        }, config);
 
         dispatch({
             type: UPDATE_PASSWORD_SUCCESS,
@@ -197,7 +203,7 @@ export const updatePassword = (oldPassword, newPassword, confirmPassword) => asy
         dispatch({
             type: UPDATE_PASSWORD_FAIL,
             payload: {
-                err: err.response.data.error
+                err: 'Failed to update password'
             }
         });
     }
@@ -210,7 +216,7 @@ export const getAllUsers = () => async (dispatch) => {
             type: ALL_USER_REQUEST
         });
 
-        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/admin/users');
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/admin/users', config);
 
         dispatch({
             type: ALL_USER_SUCCESS,
@@ -221,7 +227,7 @@ export const getAllUsers = () => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: ALL_USER_FAIL,
-            error: err.response.data.error
+            error: 'Failed to edit password'
         });
     }
 }
@@ -233,7 +239,7 @@ export const deleteUser = (userID) => async (dispatch) => {
             type: DELETE_USER_REQUEST
         });
 
-        await axios.delete(BACKEND_HOSTNAME + '/api/v1/admin/user/' + userID);
+        await axios.delete(BACKEND_HOSTNAME + '/api/v1/admin/user/' + userID, config);
 
         dispatch({
             type: DELETE_USER_SUCCESS
@@ -243,7 +249,7 @@ export const deleteUser = (userID) => async (dispatch) => {
         dispatch({
             type: DELETE_USER_FAIL,
             payload: {
-                error: err.response.data.error
+                error: 'Failed to delete user'
             }
         });
     }

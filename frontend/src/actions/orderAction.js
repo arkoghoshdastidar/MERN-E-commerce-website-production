@@ -24,7 +24,8 @@ import axios from 'axios';
 
 const config = {
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${(localStorage.getItem('token')) ? localStorage.getItem('token') : 'no_token'}` 
     }
 };
 
@@ -62,7 +63,7 @@ export const getMyOrders = () => async (dispatch) => {
             type: MY_ORDER_REQUEST
         });
 
-        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/orders/me');
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/orders/me', config);
 
         dispatch({
             type: MY_ORDER_SUCCESS,
@@ -86,7 +87,7 @@ export const getOrderDetails = (orderID) => async (dispatch) => {
             type: ORDER_DETAILS_REQUEST
         });
 
-        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/order/' + orderID);
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/order/' + orderID, config);
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -110,9 +111,8 @@ export const getAllOrders = () => async (dispatch) => {
             type: ALL_ORDER_REQUEST
         });
 
-        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/admin/orders');
-        console.log(data);
-
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/admin/orders', config);
+        
         dispatch({
             type: ALL_ORDER_SUCCESS,
             payload: {
@@ -138,13 +138,13 @@ export const getParticularOrderDetails = (orderID) => async (dispatch) => {
         let orderDetails = {};
         let productDetails = [];
 
-        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/order/' + orderID);
+        const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/order/' + orderID, config);
         orderDetails.orderItems = data.orders.orderItems;
 
         orderDetails.orderItems.forEach(async (item) => {
             const itemID = item.product;
             try {
-                const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/product/' + itemID);
+                const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/product/' + itemID, config);
                 productDetails.push(data.product);
             } catch (e) {
                 productDetails.push(undefined);
@@ -176,7 +176,7 @@ export const updateOrderStatus = (orderID, status) => async (dispatch) => {
             type: UPDATE_ORDER_STATUS_REQUEST
         })
 
-        await axios.put(BACKEND_HOSTNAME+'/api/v1/admin/order/'+orderID, status);
+        await axios.put(BACKEND_HOSTNAME+'/api/v1/admin/order/'+orderID, status, config);
 
         dispatch({
             type: UPDATE_ORDER_STATUS_SUCCESS

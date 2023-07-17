@@ -23,6 +23,13 @@ import {
     DELETE_PRODUCT_SUCCESS
 } from '../constants/productConstants';
 
+const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${(localStorage.getItem('token')) ? localStorage.getItem('token') : 'no_token'}` 
+    }
+};
+
 // action to get all products from database
 export const getProducts = (keyword = "", pageNo = 1, price = [0, 10000], category = null, rating = 0) => {
     return async (dispatch) => {
@@ -37,7 +44,7 @@ export const getProducts = (keyword = "", pageNo = 1, price = [0, 10000], catego
                 link += `&category=${category}`;
             }
 
-            const { data } = await axios.get(link);
+            const { data } = await axios.get(link, config);
 
             dispatch({
                 type: ALL_PRODUCTS_SUCCESS,
@@ -66,7 +73,7 @@ export const getAllAdminProducts = () => {
                 type: ADMIN_PRODUCTS_REQUEST
             });
 
-            const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/products/admin');
+            const { data } = await axios.get(BACKEND_HOSTNAME + '/api/v1/products/admin', config);
 
             dispatch({
                 type: ADMIN_PRODUCTS_SUCCESS,
@@ -93,7 +100,7 @@ export const getProductDetails = (id) => {
                 type: PRODUCT_DETAILS_REQUEST
             });
 
-            const { data } = await axios.get(`${BACKEND_HOSTNAME}/api/v1/product/${id}`);
+            const { data } = await axios.get(`${BACKEND_HOSTNAME}/api/v1/product/${id}`, config);
 
             dispatch({
                 type: PRODUCT_DETAILS_SUCCESS,
@@ -125,7 +132,7 @@ export const addNewReivew = ({ comment, rating, productId }) => {
                 comment,
                 rating,
                 productId
-            });
+            }, config);
 
             dispatch({
                 type: ADD_REVIEW_SUCCESS,
@@ -155,11 +162,11 @@ export const createNewProduct = (product, productID = undefined) => async (dispa
         let retData = null;
 
         if (productID !== undefined) {
-            const { data } = await axios.put(BACKEND_HOSTNAME + '/api/v1/admin/product/' + productID, product);
+            const { data } = await axios.put(BACKEND_HOSTNAME + '/api/v1/admin/product/' + productID, product, config);
             retData = data;
 
         } else {
-            const { data } = await axios.post(BACKEND_HOSTNAME + '/api/v1/admin/product/new', product);
+            const { data } = await axios.post(BACKEND_HOSTNAME + '/api/v1/admin/product/new', product, config);
             retData = data;
         }
 
@@ -186,7 +193,7 @@ export const deleteProduct = (productID) => async (dispatch) => {
             type: DELETE_PRODUCT_REQUEST
         });
 
-        await axios.delete(BACKEND_HOSTNAME + '/api/v1/admin/product/' + productID);
+        await axios.delete(BACKEND_HOSTNAME + '/api/v1/admin/product/' + productID, config);
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS

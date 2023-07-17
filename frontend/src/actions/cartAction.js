@@ -6,8 +6,15 @@ import {
 import { BACKEND_HOSTNAME } from '../constants/global';
 import axios from 'axios';
 
+const config = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${(localStorage.getItem('token')) ? localStorage.getItem('token') : 'no_token'}` 
+    }
+};
+
 export const addItemToCart = (productID, quantity) => async (dispatch, getState) => {
-    const { data } = await axios.get(BACKEND_HOSTNAME + `/api/v1/product/${productID}`);
+    const { data } = await axios.get(BACKEND_HOSTNAME + `/api/v1/product/${productID}`, config);
 
     dispatch({
         type: ADD_TO_CART,
@@ -33,7 +40,7 @@ export const removeFromCart = (productID) => async (dispatch, getState) => {
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
 }
 
-export const saveShippingInfo = (data) => async (dispatch, getState) => {
+export const saveShippingInfo = (data) => async (dispatch) => {
     dispatch({
         type: SAVE_SHIPPING_INFO,
         payload: {

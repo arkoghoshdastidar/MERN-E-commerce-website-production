@@ -49,7 +49,7 @@ const Dashboard = () => {
                     <Sidebar />
                     <div className={styles['details-board']}>
                         <h1>Welcome Back To The Dashboard</h1>
-                        <div className={styles['total-amount']}>Total ₹{ orderDetails.totalAmount}</div>
+                        <div className={styles['total-amount']}>Total ₹{Math.round(orderDetails.totalAmount)}</div>
                         <div className={styles['summary']}>
                             <div>Products <br/> <span>{products.length}</span></div>
                             <div>Users <br/> <span>{userDetails.users.length}</span></div>
