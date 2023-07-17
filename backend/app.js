@@ -1,6 +1,5 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv');
 const app = express();
 const errorMiddleware = require('./middlewares/error');
 const productRoute = require('./routes/productRoute');
@@ -14,8 +13,6 @@ const corsOptions = {
     origin: true,
     credentials: true
 };
-
-dotenv.config({ path: 'backend/config/config.env' });
 
 app.use(express.json());
 app.use(cookieParser());
